@@ -48,3 +48,8 @@ on post-fs-data
     chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/reversed_keys
     chmod 0644 /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/reversed_keys
 
+    # Edge limit
+    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/edge_limit_size
+    chmod 0644 /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/edge_limit_size
+    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/edge_limit_size 42
+
