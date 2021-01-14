@@ -10,11 +10,11 @@ function blob_fixup() {
     case "${1}" in
         # Patch blobs for VNDK
         vendor/lib/hw/camera.msm8998.so)
-            sed -i "s|libgui.so|libfui.so|g" "${2}"
+            "${PATCHELF}" --remove-needed "libgui.so" "${2}"
             "${PATCHELF}" --remove-needed "libandroid.so" "${2}"
             ;;
         vendor/lib/libnubia_effect.so | vendor/lib64/libnubia_effect.so)
-            sed -i "s|libgui.so|libfui.so|g" "${2}"
+            "${PATCHELF}" --remove-needed "libgui.so" "${2}"
             ;;
         vendor/lib/libNubiaImageAlgorithm.so)
             "${PATCHELF}" --remove-needed  "libjnigraphics.so" "${2}"

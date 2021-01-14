@@ -22,7 +22,7 @@ vendor/lib/vendor.nubia.ifaa@1.0-impl.so
 vendor/lib64/vendor.nubia.ifaa@1.0-impl.so
 
 # CameraHAL
-vendor/lib/hw/camera.msm8998.so
+vendor/lib/hw/camera.msm8998.so|a223091a6243fea30a569b6a67ab2c16c61ac3bf
 vendor/lib/libmm-qcamera.so
 vendor/lib/libmmcamera_interface.so
 vendor/lib/libmmjpeg_interface.so
@@ -37,13 +37,13 @@ lib/libalSDE2.so:vendor/lib/libalSDE2.so
 lib/libalSDK.so:vendor/lib/libalSDK.so
 lib/libalSPE.so:vendor/lib/libalSPE.so
 lib/libmmcamera_nubiacustpro.so:vendor/lib/libmmcamera_nubiacustpro.so
-lib/libnubia_effect.so:vendor/lib/libnubia_effect.so
+lib/libnubia_effect.so:vendor/lib/libnubia_effect.so|2fc0e91098c97b57139e8d6c4f5dae136e255043
 lib64/libNubiaImageAlgorithm.so:vendor/lib64/libNubiaImageAlgorithm.so
 lib64/libalParseOTP.so:vendor/lib64/libalParseOTP.so
 lib64/libalRnB.so:vendor/lib64/libalRnB.so
 lib64/libalSDE2.so:vendor/lib64/libalSDE2.so
 lib64/libalSPE.so:vendor/lib64/libalSPE.so
-lib64/libnubia_effect.so:vendor/lib64/libnubia_effect.so
+lib64/libnubia_effect.so:vendor/lib64/libnubia_effect.so|38e175f1886d09da88e8fbe505198805aa89a574
 vendor/lib/libAltek_AF.so
 vendor/lib/libHAFIAFalSDE1.so
 vendor/lib/libIAFalSDE1.so

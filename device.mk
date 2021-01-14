@@ -39,7 +39,6 @@ TARGET_SCREEN_WIDTH := 1080
 # Camera
 PRODUCT_PACKAGES += \
     libNubiaImageAlgorithm_shim \
-    libfui \
     libui_shim.vendor_32
 
 # Consumerir
@@ -97,10 +96,8 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 # Update this list with what each blob is actually for
-# libgui_vendor: libnubia_effect.so, camera.msm8998.so
 # libstdc++: camera.msm8998
 PRODUCT_PACKAGES += \
-    libgui_vendor \
     libstdc++.vendor
 
 # Wifi
