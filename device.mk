@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-# Device was launched with N-MR1
-$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
@@ -24,6 +21,9 @@ DEVICE_PACKAGE_OVERLAYS += \
 
 # Inherit from msm8998-common
 $(call inherit-product, device/nubia/msm8998-common/msm8998.mk)
+
+# Product shipping API
+PRODUCT_SHIPPING_API_LEVEL := 28
 
 # Individual audio configs
 PRODUCT_COPY_FILES += \
