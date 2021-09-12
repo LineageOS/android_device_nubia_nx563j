@@ -1,0 +1,15 @@
+//
+// Copyright (C) 2021 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_shared {
+    name: "libNubiaImageAlgorithm_shim",
+    srcs: ["nubia_image_algorithm_shim.cpp"],
+    shared_libs: [
+        "libui",
+        "libutils",
+    ],
+    vendor: true,
+}
