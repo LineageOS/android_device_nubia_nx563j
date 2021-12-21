@@ -38,7 +38,7 @@ BOARD_VENDORIMAGE_PARTITION_SIZE := 471859200
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/vendor/etc/fstab.qcom
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2020-11-01
