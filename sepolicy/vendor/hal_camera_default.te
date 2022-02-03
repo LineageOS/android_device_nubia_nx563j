@@ -1,1 +1,2 @@
 allow hal_camera_default vendor_system_prop:file { getattr open read };
+allow hal_camera_default persist_file:dir { search };
