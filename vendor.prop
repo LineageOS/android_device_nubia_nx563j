@@ -1,3 +1,6 @@
+# Bluetooth
+bluetooth.device.default_name=Nubia Z17
+
 # Cabl
 ro.vendor.display.cabl=2
 
