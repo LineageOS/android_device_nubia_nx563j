@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    bluetooth.device.default_name=Nubia Z17
+
 # Cabl
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.display.cabl=2
