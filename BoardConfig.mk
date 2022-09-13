@@ -44,7 +44,7 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/class/input/input4/wake_gesture"
 TARGET_SCREEN_DENSITY := 480
 
 # SELinux
-BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # inherit from the proprietary version
