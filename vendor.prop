@@ -1,0 +1,13 @@
+# Cabl
+ro.vendor.display.cabl=2
+
+# Camera
+ro.total.camera.number=3
+
+# NFC
+ro.hardware.nfc_nci=bcm2079x.default
+
+# Thermal
+persist.sys.lcd.backlight.max=4095
+persist.vendor.product.perf=1
+ro.vendor.thermal.product=0
