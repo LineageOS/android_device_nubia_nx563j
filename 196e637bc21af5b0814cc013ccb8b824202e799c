@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93004909_56b63d90",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2023-01-02T15:17:26Z",
+      "side": 1,
+      "message": "You can skip this if this is a standalone device tree.",
+      "revId": "196e637bc21af5b0814cc013ccb8b824202e799c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
