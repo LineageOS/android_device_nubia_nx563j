@@ -9,7 +9,6 @@
 // Display
 #define LCD_FILE "/sys/class/leds/lcd-backlight/brightness"
 
-
 // Nubia LED
 #define LED_BRIGHTNESS "/sys/class/leds/nubia_led/brightness"
 #define LED_BLINK_MODE "/sys/class/leds/nubia_led/blink_mode"
@@ -23,13 +22,7 @@
 #define BATTERY_STATUS_DISCHARGING  "Discharging"
 #define BATTERY_STATUS_NOT_CHARGING "Not charging"
 #define BATTERY_STATUS_CHARGING     "Charging"
-
-
-// Blink mode
-#define BLINK_MODE_ON 1
-#define BLINK_MODE_OFF 2
-#define BLINK_MODE_BREATH 3
-#define BLINK_MODE_BREATH_ONCE 6
+#define BATTERY_STATUS_FULL         "Full"
 
 // Outn channels
 #define LED_CHANNEL_HOME 16
@@ -39,9 +32,9 @@
 #define LED_GRADE_BUTTON 8
 #define LED_GRADE_HOME 8
 #define LED_GRADE_HOME_BATTERY_LOW 0
-#define LED_GRADE_HOME_BATTERY_FULL 6 
+#define LED_GRADE_HOME_BATTERY_CHARGING 6
+#define LED_GRADE_HOME_BATTERY_FULL 6
 #define LED_GRADE_HOME_NOTIFICATION 6
-#define LED_GRADE_HOME_BATTERY 6
 #define LED_GRADE_HOME_ATTENTION 6
 
 #define MAX_LED_BRIGHTNESS 255
@@ -71,9 +64,16 @@ static void set(std::string path, std::string value) {
     file << value;
 }
 
-static int readStr(std::string path, char *buffer, size_t size)
-{
+static void set(std::string path, int value) {
+    set(path, std::to_string(value));
+}
 
+static void set(std::string path, char *buffer) {
+    std::string str(buffer);
+    set(path, str);
+}
+
+static int readStr(std::string path, char *buffer, size_t size) {
     std::ifstream file(path);
 
     if (!file.is_open()) {
@@ -84,25 +84,6 @@ static int readStr(std::string path, char *buffer, size_t size)
     file.read(buffer, size);
     file.close();
     return 1;
-}
-
-static int set(std::string path, char *buffer, size_t size)
-{
-
-    std::ofstream file(path);
-
-    if (!file.is_open()) {
-        ALOGW("failed to write %s", path.c_str());
-        return -1;
-    }
-
-    file.write(buffer, size);
-    file.close();
-    return 1;
-}
-
-static void set(std::string path, int value) {
-    set(path, std::to_string(value));
 }
 
 static inline bool isLit(const LightState& state) {
@@ -123,7 +104,7 @@ static uint32_t getBrightness(const LightState& state) {
     /*
      * Scale RGB brightness if Alpha brightness is not 0xFF.
      */
-    if (alpha != 0xFF) {
+    if (alpha != 0xFF && alpha != 0) {
         red = red * alpha / 0xFF;
         green = green * alpha / 0xFF;
         blue = blue * alpha / 0xFF;
@@ -153,26 +134,28 @@ int getBatteryStatus(const LightState)
 
     err = readStr(BATTERY_CHARGING_STATUS, status_str, sizeof(status_str));
     if (err <= 0) {
-        ALOGI("failed to read battery status: %d", err);
+        ALOGE("failed to read battery status: %d", err);
         return BATTERY_UNKNOWN;
     }
 
-    ALOGI("battery status: %d, %s", err, status_str);
+    ALOGD("battery status: %d, %s", err, status_str);
 
     char capacity_str[6];
     int capacity;
 
     err = readStr(BATTERY_CAPACITY, capacity_str, sizeof(capacity_str));
     if (err <= 0) {
-        ALOGI("failed to read battery capacity: %d", err);
+        ALOGE("failed to read battery capacity: %d", err);
         return BATTERY_UNKNOWN;
     }
 
     capacity = atoi(capacity_str);
 
-    ALOGI("battery capacity: %d", capacity);
+    ALOGD("battery capacity: %d", capacity);
 
-    if (0 == strncmp(status_str, BATTERY_STATUS_CHARGING, 8)) {
+    if (0 == strncmp(status_str, BATTERY_STATUS_FULL, 4)) {
+        return BATTERY_FULL;
+    } else if (0 == strncmp(status_str, BATTERY_STATUS_CHARGING, 8)) {
         if (capacity < 90) {
             return BATTERY_CHARGING;
         } else {
@@ -187,98 +170,160 @@ int getBatteryStatus(const LightState)
     }
 }
 
+static int compareLedStatus(struct led_data *led1, struct led_data *led2)
+{
+    if (led1 == NULL || led2 == NULL) return false;
+    if (led1->blink_mode != led2->blink_mode) return false;
+    if (led1->min_grade != led2->min_grade) return false;
+    if (led1->max_grade != led2->max_grade) return false;
+    if (led1->fade_time != led2->fade_time) return false;
+    if (led1->fade_on_time != led2->fade_on_time) return false;
+    if (led1->fade_off_time != led2->fade_off_time) return false;
+    return true;
+}
+
 static void handleNubiaLed(const LightState& state, int source)
 {
-    int mode;
+    uint32_t brightness = getBrightness(state);
+    bool enable = brightness > 0;
+    struct led_data led_param = {BLINK_MODE_OFF, 0, 100, current_led_param.fade_time,
+                                        current_led_param.fade_on_time, current_led_param.fade_off_time};
+    int blink = 0;
 
-    size_t grade = 0;
+    char grade[16];
     char fade[16];
-    size_t fade_len = 0;
 
-    ALOGI("setting led %d: %08x, %d, %d", source,
+    switch (state.flashMode) {
+        case Flash::HARDWARE:
+            led_param.blink_mode = enable ? BLINK_MODE_BREATH_AUTO : BLINK_MODE_OFF;
+            led_param.fade_time = enable ? led_param.fade_time : -1;
+            led_param.fade_on_time = enable ? led_param.fade_on_time : -1;
+            led_param.fade_off_time = enable ? led_param.fade_off_time : -1;
+            goto applyChanges;
+        case Flash::TIMED:
+            blink = state.flashOnMs > 0 && state.flashOffMs > 0;
+            led_param.fade_time = 1;
+            led_param.fade_on_time = state.flashOnMs / 400;
+            led_param.fade_off_time = state.flashOffMs / 400;
+            break;
+        case Flash::NONE:
+        default:
+            break;
+    }
+
+    if (blink) {
+        g_blink |= source;
+    } else {
+        g_blink &= ~source;
+    }
+
+    ALOGD("setting led %d: %08x, %d, %d", source,
         state.color, state.flashOnMs, state.flashOffMs);
 
-    if (getBrightness(state) > 0) {
+    if (enable) {
         g_ongoing |= source;
-        ALOGI("ongoing +: %d = %d", source, g_ongoing);
+        ALOGD("ongoing +: %d = %d", source, g_ongoing);
     } else {
         g_ongoing &= ~source;
-        ALOGI("ongoing -: %d = %d", source, g_ongoing);
+        ALOGD("ongoing -: %d = %d", source, g_ongoing);
     }
 
-    /* set side buttons */
-
-    set(LED_CHANNEL, LED_CHANNEL_BUTTON);
     if (g_ongoing & ONGOING_BUTTONS) {
-        set(LED_GRADE, LED_GRADE_BUTTON);
-        set(LED_BLINK_MODE, BLINK_MODE_ON);
+        led_param.blink_mode = BLINK_MODE_ON;
+        led_param.min_grade = buttonBrightness;
+        led_param.max_grade = buttonBrightness;
+    } else if (g_ongoing & ONGOING_ATTENTION) {
+        blink = blink || (g_blink & ONGOING_ATTENTION);
+        led_param.blink_mode = blink ? BLINK_MODE_BREATH_CUSTOM : BLINK_MODE_ON;
+        led_param.min_grade = blink ? LED_GRADE_HOME_ATTENTION : attentionBrightness;
+        led_param.max_grade = (LED_GRADE_HOME_ATTENTION > attentionBrightness)
+                                ? LED_GRADE_HOME_ATTENTION : attentionBrightness;
+    } else if (g_ongoing & ONGOING_NOTIFICATION) {
+        blink = blink || (g_blink & ONGOING_NOTIFICATION);
+        led_param.blink_mode = blink ? BLINK_MODE_BREATH_CUSTOM : BLINK_MODE_ON;
+        led_param.min_grade = blink ? LED_GRADE_HOME_NOTIFICATION : notificationBrightness;
+        led_param.max_grade = (LED_GRADE_HOME_NOTIFICATION > notificationBrightness)
+                                ? LED_GRADE_HOME_NOTIFICATION : notificationBrightness;
+    } else if (g_ongoing & ONGOING_BATTERY) {
+        led_param.fade_time = 3;
+        led_param.fade_on_time = 0;
+        led_param.fade_off_time = 4;
+        switch (g_battery) {
+            case BATTERY_LOW:
+                led_param.blink_mode = BLINK_MODE_BREATH_CUSTOM;
+                led_param.min_grade = LED_GRADE_HOME_BATTERY_LOW;
+                led_param.max_grade = (LED_GRADE_HOME_BATTERY_LOW > batteryBrightness)
+                                        ? LED_GRADE_HOME_BATTERY_LOW : batteryBrightness;
+                break;
+            case BATTERY_CHARGING:
+                led_param.blink_mode = BLINK_MODE_BREATH_CUSTOM;
+                led_param.min_grade = LED_GRADE_HOME_BATTERY_CHARGING;
+                led_param.max_grade = (LED_GRADE_HOME_BATTERY_CHARGING > batteryBrightness)
+                                        ? LED_GRADE_HOME_BATTERY_CHARGING : batteryBrightness;
+                break;
+            case BATTERY_FULL:
+                led_param.blink_mode = BLINK_MODE_BREATH_ONCE;
+                led_param.min_grade = LED_GRADE_HOME_BATTERY_FULL;
+                led_param.max_grade = (LED_GRADE_HOME_BATTERY_FULL > batteryBrightness)
+                                        ? LED_GRADE_HOME_BATTERY_FULL : batteryBrightness;
+                break;
+            default:
+                led_param.blink_mode = BLINK_MODE_OFF;
+                led_param.fade_time = -1;
+                led_param.fade_on_time = -1;
+                led_param.fade_off_time = -1;
+                break;
+        }
     } else {
-        set(LED_BLINK_MODE, BLINK_MODE_OFF);
+        led_param.blink_mode = BLINK_MODE_OFF;
+        led_param.fade_time = -1;
+        led_param.fade_on_time = -1;
+        led_param.fade_off_time = -1;
     }
 
-    /* set middle ring */
+applyChanges:
+    if (compareLedStatus(&led_param, &current_led_param))
+        return;
 
-    if (g_ongoing & ONGOING_NOTIFICATION) {
-        mode = BLINK_MODE_BREATH;
-        grade = LED_GRADE_HOME_NOTIFICATION;
-    }
-    else if (g_ongoing & ONGOING_ATTENTION) {
-        mode = BLINK_MODE_BREATH;
-        grade = LED_GRADE_HOME_ATTENTION;
-    }
-    else if (g_battery == BATTERY_CHARGING) {
-        mode = BLINK_MODE_BREATH;
-        grade = LED_GRADE_HOME_BATTERY;
-        fade_len = sprintf(fade, "%d %d %d\n", 3, 0, 4);
-    }
-    else if (g_battery == BATTERY_FULL) {
-        mode = BLINK_MODE_BREATH_ONCE;
-        grade = LED_GRADE_HOME_BATTERY_FULL;
-        fade_len = sprintf(fade, "%d %d %d\n", 3, 0, 4);
-    }
-    else if (g_battery == BATTERY_LOW) {
-        mode = BLINK_MODE_BREATH;
-        grade = LED_GRADE_HOME_BATTERY_LOW;
-        fade_len = sprintf(fade, "%d %d %d\n", 3, 0, 4);
-    }
-    else if (g_ongoing & ONGOING_BUTTONS) {
-        mode = BLINK_MODE_ON;
-        grade = LED_GRADE_BUTTON;
-    }
-    else {
-        mode = BLINK_MODE_OFF;
-    }
-
-    if (state.flashMode == Flash::TIMED) {
-        fade_len = sprintf(fade, "%d %d %d\n",
-            1, state.flashOnMs / 400, state.flashOffMs / 400);
-    }
+    sprintf(grade, "%d %d\n", led_param.min_grade, led_param.max_grade);
+    sprintf(fade, "%d %d %d\n", led_param.fade_time, led_param.fade_on_time, led_param.fade_off_time);
 
     set(LED_CHANNEL, LED_CHANNEL_HOME);
     set(LED_GRADE, grade);
-    if (fade_len > 0) {
-        set(LED_FADE, fade, fade_len);
-    }
-    set(LED_BLINK_MODE, mode);
+    set(LED_FADE, fade);
+    set(LED_BLINK_MODE, led_param.blink_mode);
+    current_led_param = led_param;
 }
 
 static void handleButtons(const LightState& state) {
-    uint32_t brightness = getScaledBrightness(state, MAX_LED_BRIGHTNESS);
-    set(LED_BRIGHTNESS, brightness);
-	handleNubiaLed(state, ONGOING_BUTTONS);
+    buttonBrightness = getScaledBrightness(state, MAX_LED_BRIGHTNESS);
+
+    set(LED_CHANNEL, LED_CHANNEL_BUTTON);
+    if (buttonBrightness > 0) {
+        set(LED_GRADE, buttonBrightness);
+        set(LED_BLINK_MODE, BLINK_MODE_ON);
+    } else {
+        set(LED_GRADE, 0);
+        set(LED_BLINK_MODE, BLINK_MODE_OFF);
+    }
+
+    handleNubiaLed(state, ONGOING_BUTTONS);
 }
 
 static void handleNotification(const LightState& state) {
-	handleNubiaLed(state, ONGOING_NOTIFICATION);
+    notificationBrightness = getScaledBrightness(state, MAX_LED_BRIGHTNESS);
+    handleNubiaLed(state, ONGOING_NOTIFICATION);
 }
 
 static void handleBattery(const LightState& state){
-	g_battery = getBatteryStatus(state);
-	handleNubiaLed(state, 0);
+    g_battery = getBatteryStatus(state);
+    batteryBrightness = getScaledBrightness(state, MAX_LED_BRIGHTNESS);
+    handleNubiaLed(state, ONGOING_BATTERY);
 }
 
 static void handleAttention(const LightState& state){
-	handleNubiaLed(state, ONGOING_ATTENTION);
+    attentionBrightness = getScaledBrightness(state, MAX_LED_BRIGHTNESS);
+    handleNubiaLed(state, ONGOING_ATTENTION);
 }
 /* Keep sorted in the order of importance. */
 static std::vector<LightBackend> backends = {
