@@ -26,9 +26,17 @@
 
 // Events
 #define ONGOING_NONE             0
-#define ONGOING_NOTIFICATION    (1 << 0)
-#define ONGOING_BUTTONS         (1 << 1)
-#define ONGOING_ATTENTION       (1 << 2)
+#define ONGOING_BUTTONS         (1 << 0)
+#define ONGOING_ATTENTION       (1 << 1)
+#define ONGOING_NOTIFICATION    (1 << 2)
+#define ONGOING_BATTERY         (1 << 3)
+
+// Blink mode
+#define BLINK_MODE_ON 1
+#define BLINK_MODE_OFF 2
+#define BLINK_MODE_BREATH_AUTO 3
+#define BLINK_MODE_BREATH_ONCE 6
+#define BLINK_MODE_BREATH_CUSTOM 7
 
 using ::android::hardware::Return;
 using ::android::hardware::Void;
@@ -50,8 +58,26 @@ enum battery_status {
     BATTERY_FULL,
 };
 
-static int g_ongoing = ONGOING_NONE;
 static int g_battery = BATTERY_UNKNOWN;
+
+static int g_blink = ONGOING_NONE;
+static int g_ongoing = ONGOING_NONE;
+
+static uint32_t attentionBrightness = 0;
+static uint32_t batteryBrightness = 0;
+static uint32_t buttonBrightness = 0;
+static uint32_t notificationBrightness = 0;
+
+struct led_data
+{
+    int blink_mode;
+    int min_grade;
+    int max_grade;
+    int fade_time;
+    int fade_on_time;
+    int fade_off_time;
+};
+static struct led_data current_led_param = {BATTERY_UNKNOWN, -1, -1, -1, -1, -1};
 
 typedef void (*LightStateHandler)(const LightState&);
 
