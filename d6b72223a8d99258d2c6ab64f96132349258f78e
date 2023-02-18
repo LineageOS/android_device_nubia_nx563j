@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b564eda_dc3a35fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2023-02-18T07:00:13Z",
+      "side": 1,
+      "message": "Fixed missing commit author",
+      "revId": "d6b72223a8d99258d2c6ab64f96132349258f78e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
