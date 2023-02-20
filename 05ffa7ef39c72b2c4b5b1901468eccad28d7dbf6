@@ -16,6 +16,24 @@
       "message": "Verified. But are you sure to keep the home led blinking (instead of staying light up) when charging with the lock screen on? This will create a misunderstanding: the user cannot judge whether he has received a \"message reminder\" when charging in the lock screen state, such as \"missed call\" or \"unread message\".Perhaps it should be like this: when charging in the lock screen state, home led -\u003e stay light up. Once the device receives the notification message, home led -\u003e blinking.",
       "revId": "05ffa7ef39c72b2c4b5b1901468eccad28d7dbf6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "282d3e1e_f62d6924",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2023-02-20T15:10:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fe2aa75_51f4b09c",
+      "revId": "05ffa7ef39c72b2c4b5b1901468eccad28d7dbf6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
