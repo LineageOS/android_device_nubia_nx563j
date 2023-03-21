@@ -14,19 +14,25 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/nubia/nx563j/full_nx563j.mk)
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit from nx563j device
+$(call inherit-product, device/nubia/nx563j/device.mk)
 
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+# Device identifier. This must come after all inclusions
 PRODUCT_NAME := lineage_nx563j
+PRODUCT_BRAND := Nubia
 PRODUCT_DEVICE := nx563j
-PRODUCT_MANUFACTURER := nubia
-PRODUCT_MODEL := NX563J
+PRODUCT_MANUFACTURER := Nubia
+PRODUCT_MODEL := Nubia Z17
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
-PRODUCT_BRAND := nubia
 TARGET_VENDOR := nubia
 TARGET_VENDOR_PRODUCT_NAME := NX563J
 TARGET_VENDOR_DEVICE_NAME := NX563J
