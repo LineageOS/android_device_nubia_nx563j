@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0177cd86_70f881ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 24457
+      },
+      "writtenOn": "2023-03-21T12:10:10Z",
+      "side": 1,
+      "message": "https://github.com/nubia-development/proprietary_vendor_nubia_nx563j/commit/d3ce3e7fac01dbd07e8af55611cc4e4bb07465c3",
+      "revId": "5c96d9bf99a039185c31b20972e6a33df9cdd30c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
