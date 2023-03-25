@@ -1,3 +1,8 @@
 # Fingerprint
 fpc_kpi                                                       u:object_r:vendor_default_prop:s0
 sys.fp.user                                                   u:object_r:vendor_default_prop:s0
+
+# Touchscreen
+persist.gesture.swapbuttons                                   u:object_r:vendor_gesture_prop:s0
+persist.gesture.palmsleep                                     u:object_r:vendor_gesture_prop:s0
+persist.gesture.edgeslop                                      u:object_r:vendor_gesture_prop:s0
