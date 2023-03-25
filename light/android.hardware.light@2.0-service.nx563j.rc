@@ -1,15 +1,60 @@
 on init
-    # Nubia LED
-    chown system system /sys/class/leds/nubia_led/blink_mode
-    chmod 0664 /sys/class/leds/nubia_led/blink_mode
-    chown system system  /sys/class/leds/nubia_led/brightness
-    chmod 0644 /sys/class/leds/nubia_led/brightness
+    # Light
+    chown system system /sys/class/light/light/enable
+    chown system system /sys/class/light/light/tp_cfg
+    chown system system /sys/class/light/light/fac_calibrate
+    chown system system /sys/class/light/light/calibrate
+    chown system system /sys/class/light/light/chip_name
+    chown system system /sys/class/light/light/light_value
+    chown system system /sys/class/light/light/delay
+    chown system system /sys/class/light/light/red_data
+    chown system system /sys/class/light/light/green_data
+    chown system system /sys/class/light/light/blue_data
+    chown system system /sys/class/light/light/clear_data
+    chown system system /sys/class/light/light/dump_reg
+    chown system system /sys/class/light/light/module_tpcolor
+    chown system system /sys/class/light/light/dump_tp_parameter
+    chown system system /sys/class/light/light/dev_init
+    chown system system /persist/sensors/rgb_color_cfg
+    chown system system /persist/sensors/rgbc_cfg
+    chown system system /persist/sensors/als_cal_data
+
+    chmod 0644 /sys/class/light/light/enable
+    chmod 0644 /sys/class/light/light/tp_cfg
+    chmod 0644 /sys/class/light/light/fac_calibrate
+    chmod 0644 /sys/class/light/light/calibrate
+    chmod 0644 /sys/class/light/light/chip_name
+    chmod 0644 /sys/class/light/light/light_value
+    chmod 0644 /sys/class/light/light/delay
+    chmod 0644 /sys/class/light/light/red_data
+    chmod 0644 /sys/class/light/light/blue_data
+    chmod 0644 /sys/class/light/light/green_data
+    chmod 0644 /sys/class/light/light/clear_data
+    chmod 0644 /sys/class/light/light/dump_reg
+    chmod 0644 /sys/class/light/light/module_tpcolor
+    chmod 0644 /sys/class/light/light/dump_tp_parameter
+    chmod 0644 /sys/class/light/light/dev_init
+    chmod 0664 /persist/sensors/rgb_color_cfg
+    chmod 0664 /persist/sensors/rgbc_cfg
+    chmod 0664 /persist/sensors/als_cal_data
+
+    # Breath & button light permissions
+    chown system system /sys/class/leds/nubia_led/brightness
     chown system system /sys/class/leds/nubia_led/fade_parameter
-    chmod 0644 /sys/class/leds/nubia_led/fade_parameter
     chown system system /sys/class/leds/nubia_led/grade_parameter
-    chmod 0644 /sys/class/leds/nubia_led/grade_parameter
     chown system system /sys/class/leds/nubia_led/outn
-    chmod 0644 /sys/class/leds/nubia_led/outn
+    chown system system /sys/class/leds/nubia_led/blink_mode
+    chown system system /sys/class/leds/nubia_led/debug
+    chmod 664 /sys/class/leds/nubia_led/brightness
+    chmod 664 /sys/class/leds/nubia_led/fade_parameter
+    chmod 664 /sys/class/leds/nubia_led/grade_parameter
+    chmod 664 /sys/class/leds/nubia_led/outn
+    chmod 664 /sys/class/leds/nubia_led/blink_mode
+    chmod 664 /sys/class/leds/nubia_led/debug
+
+    # LCD backlight permissions
+    chown system system /sys/class/leds/lcd-backlight/brightness
+    chmod 640 /sys/class/leds/lcd-backlight/brightness
 
 service vendor.light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.nx563j
     interface android.hardware.light@2.0::ILight default
