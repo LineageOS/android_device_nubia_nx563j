@@ -27,62 +27,51 @@
 #
 #
 
-
 #nubia, tp&lcd node start
 on post-fs-data
-    mkdir /data/vendor/tp 0775 system system
-    rm /data/vendor/tp/ic_ver
-    rm /data/vendor/tp/reset
-    rm /data/vendor/tp/ic_detect
-    rm /data/vendor/tp/start_update
-    rm /data/vendor/tp/easy_wakeup_gesture
-    rm /data/vendor/tp/easy_sleep_palm
-    rm /data/vendor/tp/read_rt2
-    rm /data/vendor/tp/read_rt3
-    rm /data/vendor/tp/start_user_update
+    chown system system /sys/class/touch/tpnode/synaptics/ic_ver
+    chown system system /sys/class/touch/tpnode/synaptics/reset
+    chown system system /sys/class/touch/tpnode/synaptics/device/ic_detect
+    chown system system /sys/class/touch/tpnode/synaptics/palm_sleep
 
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/ic_ver
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/ic_ver /data/vendor/tp/ic_ver
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input5/reset
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input5/reset /data/vendor/tp/reset
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/ic_detect
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/ic_detect /data/vendor/tp/ic_detect
-	
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/start_update /data/vendor/tp/start_update
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/wake_gesture
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/wake_gesture /data/vendor/tp/easy_wakeup_gesture
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/palm_sleep
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/palm_sleep /data/vendor/tp/easy_sleep_palm
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/start_update 1
+    symlink /sys/class/touch/tpnode/synaptics/ic_ver /data/vendor/tp/ic_ver
+    symlink /sys/class/touch/tpnode/synaptics/reset /data/vendor/tp/reset
+    symlink /sys/class/touch/tpnode/synaptics/device/ic_detect /data/vendor/tp/ic_detect
+    symlink /sys/class/touch/tpnode/synaptics/device/start_update /data/vendor/tp/start_update
+    symlink /sys/class/touch/tpnode/synaptics/wake_gesture /data/vendor/tp/easy_wakeup_gesture
+    symlink /sys/class/touch/tpnode/synaptics/palm_sleep /data/vendor/tp/easy_sleep_palm
+
+    write /sys/class/touch/tpnode/synaptics/start_update 1
+
     chown system system /sys/kernel/lcd_enhance/colortmp
     chown system system /sys/kernel/lcd_enhance/saturation
     chown system system /sys/kernel/lcd_enhance/cabc
     chown system system /sys/kernel/lcd_enhance/lcd_power_on
     chown system system /sys/kernel/lcd_enhance/lcd_power_off
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input5/f54/read_rt2
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input5/f54/read_rt3
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input5/f54/read_rt2 /data/vendor/tp/read_rt2
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input5/f54/read_rt3 /data/vendor/tp/read_rt3
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/start_user_update
-    symlink /sys/devices/soc/c179000.i2c/i2c-5/5-0020/start_user_update /data/vendor/tp/start_user_update
 
-#nubia, tp&lcd node end
+    chown system system /sys/class/touch/tpnode/synaptics/f54/read_rt2
+    chown system system /sys/class/touch/tpnode/synaptics/f54/read_rt3
+    chown system system /sys/class/touch/tpnode/synaptics/remap
+    chown system system /sys/class/touch/tpnode/synaptics/device/start_user_update
 
-on property:gsm.call.other_to_gsm=1
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/home 194
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/menu 194
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/back 194
+    symlink /sys/class/touch/tpnode/synaptics/f54/read_rt2 /data/vendor/tp/read_rt2
+    symlink /sys/class/touch/tpnode/synaptics/f54/read_rt3 /data/vendor/tp/read_rt3
+    symlink /sys/class/touch/tpnode/synaptics/device/start_user_update /data/vendor/tp/start_user_update
 
-on property:gsm.call.other_to_gsm=2
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/home 147
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/menu 147
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/back 166
+    write /sys/class/touch/tpnode/synaptics/remap 18
 
+on property:persist.gesture.swapbuttons=*
+    write /sys/class/touch/tpnode/synaptics/swap_buttons ${persist.gesture.swapbuttons}
 
+on property:persist.gesture.palmsleep=*
+    write /sys/class/touch/tpnode/synaptics/palm_sleep ${persist.gesture.palmsleep}
+
+on property:persist.gesture.edgeslop=*
+    write /sys/class/touch/tpnode/synaptics/remap ${persist.gesture.edgeslop}
 
 on property:sys.tp.wakeup=*
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/wake_gesture ${sys.tp.wakeup}
+    write /sys/class/touch/tpnode/synaptics/wake_gesture ${sys.tp.wakeup}
 
 on property:sys.tp.palmsleep=*
-    write /sys/devices/soc/c179000.i2c/i2c-5/5-0020/palm_sleep ${sys.tp.palmsleep}
+    write /sys/class/touch/tpnode/synaptics/palm_sleep ${sys.tp.palmsleep}
 #nubia end

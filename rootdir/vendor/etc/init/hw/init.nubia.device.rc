@@ -43,14 +43,13 @@ on post-fs-data
     mkdir /data/vendor/nfc 770 nfc nfc
 
     # Wakeup gesture
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/wake_gesture
-    chmod 0644 /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/wake_gesture
+    chown system system /sys/class/touch/tpnode/synaptics/wake_gesture
+    chmod 0644 /sys/class/touch/tpnode/synaptics/wake_gesture
 
     # 0dbutton
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/0dbutton
-    chmod 0644 /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/0dbutton
+    chown system system /sys/class/touch/tpnode/synaptics/0dbutton
+    chmod 0644 /sys/class/touch/tpnode/synaptics/0dbutton
 
     # Reversed keys
-    chown system system /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/reversed_keys
-    chmod 0644 /sys/devices/soc/c179000.i2c/i2c-5/5-0020/input/input4/reversed_keys
-
+    chown system system /sys/class/touch/tpnode/synaptics/reversed_keys
+    chmod 0644 /sys/class/touch/tpnode/synaptics/reversed_keys
