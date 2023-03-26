@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d441ac9b_360a431f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2023-03-26T15:21:15Z",
+      "side": 1,
+      "message": "https://github.com/LineageOS/android_device_nubia_nx563j/commit/acd14e9847e40fe8074c15c20594111a7b6bb7ae\nCan a Pie fingerprint pass a SafetyNet check?",
+      "revId": "9c5012b911463d543acd70490aec8a90ded248f1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
