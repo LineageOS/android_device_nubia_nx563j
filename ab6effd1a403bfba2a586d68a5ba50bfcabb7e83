@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fb6736f_65d1e4ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14844
+      },
+      "writtenOn": "2023-03-26T15:22:28Z",
+      "side": 1,
+      "message": "Nubia Z17 launched with Android Nougat, not Pie",
+      "revId": "ab6effd1a403bfba2a586d68a5ba50bfcabb7e83",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
