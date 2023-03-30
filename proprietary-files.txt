@@ -427,9 +427,6 @@ etc/.tp/.thermal-mode-01-04.conf:vendor/etc/.tp/.thermal-mode-01-04.conf
 # TP firmware
 etc/firmware/nubia_tp_jdi_fw.img:vendor/firmware/nubia_tp_jdi_fw.img
 
-# Widevine - from NX609J - OPM1.171019.011 factory image
-vendor/lib/mediadrm/libwvdrmengine.so|6d0a89adc41c008a567658459ec460a301813c7d
-
 # Misc
 vendor/firmware/Generic_unsigned.ncd
 vendor/firmware/Generic_unsigned_119_1.ncd
