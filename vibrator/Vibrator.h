@@ -18,8 +18,8 @@
 
 #include <aidl/android/hardware/vibrator/BnVibrator.h>
 
-#define INTENSITY_MIN 30
-#define INTENSITY_MAX 10000
+#define INTENSITY_MIN 12
+#define INTENSITY_MAX 127
 #define INTENSITY_DEFAULT INTENSITY_MAX
 
 #define VIBRATOR_TIMEOUT_PATH "/sys/class/timed_output/vibrator/enable"
