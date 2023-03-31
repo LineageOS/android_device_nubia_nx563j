@@ -24,7 +24,6 @@
 
 #define VIBRATOR_TIMEOUT_PATH "/sys/class/timed_output/vibrator/enable"
 #define VIBRATOR_INTENSITY_PATH "/sys/class/timed_output/vibrator/vtg_level"
-#define VIBRATOR_CP_TRIGGER_PATH "/sys/class/timed_output/vibrator/cp_trigger_index"
 
 using ::aidl::android::hardware::vibrator::IVibratorCallback;
 using ::aidl::android::hardware::vibrator::Braking;
@@ -78,7 +77,6 @@ private:
 
     bool mIsTimedOutVibrator;
     bool mHasTimedOutIntensity;
-    bool mHasTimedOutEffect;
 };
 
 } // namespace vibrator
