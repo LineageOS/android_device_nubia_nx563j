@@ -168,7 +168,9 @@ ndk::ScopedAStatus Vibrator::setAmplitude(float amplitude) {
 
     LOG(DEBUG) << "Setting amplitude: " << (uint32_t)amplitude;
 
-    intensity = std::lround((amplitude - 1) * INTENSITY_MAX / 254.0);
+    // Scale the voltage such that an amplitude of 1 is INTENSITY_MIN, an amplitude of 255 is
+    // INTENSITY_MAX, and there are equal steps for every value in between.
+    intensity = std::lround((amplitude - 1) / 254.0 * (INTENSITY_MAX - INTENSITY_MIN) + INTENSITY_MIN);
     if (intensity > INTENSITY_MAX) {
         intensity = INTENSITY_MAX;
     }
