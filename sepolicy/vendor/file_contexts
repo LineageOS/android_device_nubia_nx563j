@@ -3,6 +3,9 @@
 /sys/devices/soc/1.fpc1020(/.*)?                                                                                u:object_r:sysfs_fingerprint:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint\.fpc@2\.1-service                     u:object_r:hal_fingerprint_default_exec:s0
 
+# Haptic
+/dev/drv2605                                                                                                    u:object_r:haptics_device:s0
+
 # IR Remote
 /dev/ttyMSM1                                                                                                    u:object_r:ir_remote_device:s0
 /dev/ir_remote                                                                                                  u:object_r:ir_remote_device:s0
@@ -28,3 +31,7 @@
 
 # Touchscreen
 /sys/class/touch/tpnode/synaptics/reversed_keys 		                                   u:object_r:sysfs_tp_revkeys:s0
+
+# Vibrator
+/vendor/bin/hw/android\.hardware\.vibrator-service\.nubia                                                       u:object_r:hal_vibrator_default_exec:s0
+/sys/devices/virtual/timed_output/vibrator(/.*)?                                                                u:object_r:sysfs_vibrator:s0

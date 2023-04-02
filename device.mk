@@ -98,6 +98,10 @@ PRODUCT_PACKAGES += \
     init.nubia.device.rc \
     init.nubia.touch.lcd.rc
 
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator-service.nubia
+
 # VNDK
 # Update this list with what each blob is actually for
 # libstdc++: camera.msm8998
