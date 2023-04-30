@@ -89,7 +89,11 @@ static uint32_t getBrightness(const LightState& state) {
 }
 
 static inline uint32_t scaleBrightness(uint32_t brightness, uint32_t maxBrightness) {
-    return brightness * maxBrightness / 0xFF;
+    // Map brightness values logarithmatically to match aosp behaviour
+    ALOGD("Received brightness: %d", brightness);
+    if (maxBrightness == MAX_LCD_BRIGHTNESS)
+        return brightness_table[brightness];
+    return brightness;
 }
 
 static inline uint32_t getScaledBrightness(const LightState& state, uint32_t maxBrightness) {
@@ -98,6 +102,7 @@ static inline uint32_t getScaledBrightness(const LightState& state, uint32_t max
 
 static void handleBacklight(const LightState& state) {
     uint32_t brightness = getScaledBrightness(state, MAX_LCD_BRIGHTNESS);
+    ALOGD("Setting brightness: %d", brightness);
     set(LCD_FILE, brightness);
 }
 
