@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b77a5525_578ff3d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 24457
+      },
+      "writtenOn": "2023-05-01T10:28:43Z",
+      "side": 1,
+      "message": "Unable to adapt to appropriate screen brightness when ambient brightness is low.\nNeed to adjust the autoBrightnessLcdBacklightValues and autoBrightnessLevels and mapping.\nI\u0027ve already dumped it. Update soon",
+      "revId": "5fef91e5ad1db9f879feb6bc6a5be93164d4d764",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
