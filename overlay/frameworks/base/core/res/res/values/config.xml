@@ -30,15 +30,28 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>1</item>      <!-- pitch black -->
-        <item>10</item>
-        <item>50</item>
-        <item>100</item>
-        <item>400</item>    <!-- home -->
-        <item>900</item>
-        <item>2000</item>   <!-- office -->
-        <item>5000</item>   <!-- daylight -->
-        <item>10000</item>
+        <item>1</item>
+        <item>5</item>
+        <item>8</item>
+        <item>13</item>
+        <item>17</item>
+        <item>21</item>
+        <item>26</item>
+        <item>30</item>
+        <item>34</item>
+        <item>39</item>
+        <item>60</item>
+        <item>140</item>
+        <item>310</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>1000</item>
+        <item>1200</item>
+        <item>1500</item>
+        <item>3000</item>
+        <item>3500</item>
+        <item>4000</item>
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -46,16 +59,29 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>23</item>     <!-- 0-1 -->
-        <item>46</item>     <!-- 1-10 -->
-        <item>90</item>     <!-- 10-50 -->
-        <item>110</item>    <!-- 50-100 -->
-        <item>120</item>    <!-- 100-400 -->
-        <item>132</item>    <!-- 400-900 -->
-        <item>160</item>    <!-- 900-2000 -->
-        <item>200</item>    <!-- 2000-5000 -->
-        <item>225</item>    <!-- 5000-10000 -->
-        <item>255</item>    <!-- 10000+ -->
+        <item>2</item>
+        <item>3</item>
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>15</item>
+        <item>17</item>
+        <item>24</item>
+        <item>30</item>
+        <item>30</item>
+        <item>44</item>
+        <item>45</item>
+        <item>48</item>
+        <item>55</item>
+        <item>64</item>
+        <item>66</item>
+        <item>69</item>
+        <item>84</item>
+        <item>93</item>
+        <item>105</item>
+        <item>200</item>
+        <item>240</item>
+        <item>255</item>
     </integer-array>
 
     <!-- Stability requirements in milliseconds for accepting a new brightness level.  This is used
