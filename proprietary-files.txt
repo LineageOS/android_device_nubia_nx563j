@@ -391,7 +391,7 @@ vendor/lib/hw/consumerir.default.so:vendor/lib/hw/consumerir.msm8998.so
 vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.msm8998.so
 
 # Fingerprint sensor
-lib64/com.fingerprints.extension@1.0.so:vendor/lib64/com.fingerprints.extension@1.0.so
+lib64/com.fingerprints.extension@1.0.so:vendor/lib64/com.fingerprints.extension@1.0.so|cb69e393dc4177666006e136213a6943433b21a1
 vendor/bin/hw/android.hardware.biometrics.fingerprint.fpc@2.1-service
 vendor/bin/qfp-daemon
 vendor/etc/init/android.hardware.biometrics.fingerprint.fpc@2.1-service.rc|fb1fa6db8c56ed18453255a733a9322e16bc8abd
