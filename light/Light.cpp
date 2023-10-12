@@ -26,7 +26,7 @@
 #define LED_GRADE_HOME_ATTENTION 6
 
 #define MAX_LED_BRIGHTNESS 255
-#define MAX_LCD_BRIGHTNESS 4095
+#define MAX_LCD_BRIGHTNESS 255
 
 namespace {
 
@@ -89,11 +89,7 @@ static uint32_t getBrightness(const LightState& state) {
 }
 
 static inline uint32_t scaleBrightness(uint32_t brightness, uint32_t maxBrightness) {
-    // Map brightness values logarithmatically to match aosp behaviour
-    ALOGD("Received brightness: %d", brightness);
-    if (maxBrightness == MAX_LCD_BRIGHTNESS)
-        return brightness_table[brightness];
-    return brightness;
+    return brightness * maxBrightness / 0xFF;
 }
 
 static inline uint32_t getScaledBrightness(const LightState& state, uint32_t maxBrightness) {
@@ -102,7 +98,6 @@ static inline uint32_t getScaledBrightness(const LightState& state, uint32_t max
 
 static void handleBacklight(const LightState& state) {
     uint32_t brightness = getScaledBrightness(state, MAX_LCD_BRIGHTNESS);
-    ALOGD("Setting brightness: %d", brightness);
     set(LCD_FILE, brightness);
 }
 
