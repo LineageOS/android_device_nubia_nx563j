@@ -31,44 +31,44 @@ vendor/lib/libqomx_core.so
 
 # Required by Camera HAL
 lib/libNubiaImageAlgorithm.so:vendor/lib/libNubiaImageAlgorithm.so
-lib/libalParseOTP.so:vendor/lib/libalParseOTP.so
-lib/libalRnB.so:vendor/lib/libalRnB.so
-lib/libalSDE2.so:vendor/lib/libalSDE2.so
-lib/libalSDK.so:vendor/lib/libalSDK.so
-lib/libalSPE.so:vendor/lib/libalSPE.so
+lib/libalParseOTP.so:vendor/lib/libalParseOTP.so|623b9fefc5112617dfbbb46d85952793657f4ea5
+lib/libalRnB.so:vendor/lib/libalRnB.so|cb8bd4d3b0f6eb227c1e5bd53a62b61e940541de
+lib/libalSDE2.so:vendor/lib/libalSDE2.so|2982330157c452e5eb1c5305f4e052cc081aad24
+lib/libalSDK.so:vendor/lib/libalSDK.so|e63b5f684f8264d670260151e14cee30552010c7
+lib/libalSPE.so:vendor/lib/libalSPE.so|4904fbddeaacb29e48f87199b06cbec79eba0081
 lib/libmmcamera_nubiacustpro.so:vendor/lib/libmmcamera_nubiacustpro.so
 lib/libnubia_effect.so:vendor/lib/libnubia_effect.so|2fc0e91098c97b57139e8d6c4f5dae136e255043
 lib64/libNubiaImageAlgorithm.so:vendor/lib64/libNubiaImageAlgorithm.so
-lib64/libalParseOTP.so:vendor/lib64/libalParseOTP.so
-lib64/libalRnB.so:vendor/lib64/libalRnB.so
-lib64/libalSDE2.so:vendor/lib64/libalSDE2.so
-lib64/libalSPE.so:vendor/lib64/libalSPE.so
+lib64/libalParseOTP.so:vendor/lib64/libalParseOTP.so|11f5df872dcbe9533583e7b8d6aadef825bd1543
+lib64/libalRnB.so:vendor/lib64/libalRnB.so|27f28fb69e4f046d484c63b425d722bbb549e457
+lib64/libalSDE2.so:vendor/lib64/libalSDE2.so|41ece942c2baed0d083f442f7b1bfdea612883ee
+lib64/libalSPE.so:vendor/lib64/libalSPE.so|24db583b34e056e7ceffb657e736f6a50560e8e0
 lib64/libnubia_effect.so:vendor/lib64/libnubia_effect.so|38e175f1886d09da88e8fbe505198805aa89a574
-vendor/lib/libAltek_AF.so
-vendor/lib/libHAFIAFalSDE1.so
-vendor/lib/libIAFalSDE1.so
-vendor/lib/libIQ_Match_Lib.so
-vendor/lib/libalCMotion.so
+vendor/lib/libAltek_AF.so|f15a6a9dcf3d0792e313c4156861b0ecbdc60df0
+vendor/lib/libHAFIAFalSDE1.so|13da575edbcb6d3e647f443e20a862ffbbef403a
+vendor/lib/libIAFalSDE1.so|f84106db0a0d27a1a907e969c301043595cf4d5f
+vendor/lib/libIQ_Match_Lib.so|0a2ebabf9fe131eae6c41b4090d4565fed59a70c
+vendor/lib/libalCMotion.so|8a3f21e8a4a1699478347c2ffcf8eb7f87521c2f
 
 # Camera
 bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon
-lib/libarcsoft_beautyshot.so:vendor/lib/libarcsoft_beautyshot.so
-lib/libarcsoft_beautyshot_image_algorithm.so:vendor/lib/libarcsoft_beautyshot_image_algorithm.so
-lib/libarcsoft_beautyshot_video_algorithm.so:vendor/lib/libarcsoft_beautyshot_video_algorithm.so
-lib/libarcsoft_dualcam_refocus.so:vendor/lib/libarcsoft_dualcam_refocus.so
+lib/libarcsoft_beautyshot.so:vendor/lib/libarcsoft_beautyshot.so|1a2d5480c453f14751cfca2db3a5eb72d30723ea
+lib/libarcsoft_beautyshot_image_algorithm.so:vendor/lib/libarcsoft_beautyshot_image_algorithm.so|6d3f45bdf951923fecb3de7b320ff4a9cf5ce0bd
+lib/libarcsoft_beautyshot_video_algorithm.so:vendor/lib/libarcsoft_beautyshot_video_algorithm.so|e2e38d3a8c67342a98f43bb04c1fbcfa73f0e28a
+lib/libarcsoft_dualcam_refocus.so:vendor/lib/libarcsoft_dualcam_refocus.so|b94ced9dd585ebb3ec26ed24b69f9c7ec2180f07
 lib/libarcsoft_high_dynamic_range.so:vendor/lib/libarcsoft_high_dynamic_range.so
-lib/libarcsoft_low_light_shot.so:vendor/lib/libarcsoft_low_light_shot.so
-lib/libarcsoft_night_shot.so:vendor/lib/libarcsoft_night_shot.so
-lib/libarcsoft_picauto.so:vendor/lib/libarcsoft_picauto.so
+lib/libarcsoft_low_light_shot.so:vendor/lib/libarcsoft_low_light_shot.so|4a7b5452926e1375664d924efe06393a762fac82
+lib/libarcsoft_night_shot.so:vendor/lib/libarcsoft_night_shot.so|c2852f6cfbfbcb38fef960e312bf83c5280d96be
+lib/libarcsoft_picauto.so:vendor/lib/libarcsoft_picauto.so|a624a779bcc3d3cc4422eab1d4da557963a17494
 lib/libmpbase.so:vendor/lib/libmpbase.so
 lib64/libArcsoftAlgorithm.so:vendor/lib64/libArcsoftAlgorithm.so
 lib64/libDualCamera_Calibration.so:vendor/lib64/libDualCamera_Calibration.so
-lib64/libarcsoft_beautyshot.so:vendor/lib64/libarcsoft_beautyshot.so
-lib64/libarcsoft_beautyshot_image_algorithm.so:vendor/lib64/libarcsoft_beautyshot_image_algorithm.so
-lib64/libarcsoft_beautyshot_video_algorithm.so:vendor/lib64/libarcsoft_beautyshot_video_algorithm.so
-lib64/libarcsoft_dualcam_refocus.so:vendor/lib64/libarcsoft_dualcam_refocus.so
-lib64/libarcsoft_low_light_shot.so:vendor/lib64/libarcsoft_low_light_shot.so
-lib64/libarcsoft_night_shot.so:vendor/lib64/libarcsoft_night_shot.so
+lib64/libarcsoft_beautyshot.so:vendor/lib64/libarcsoft_beautyshot.so|5cfc0fa2354a12409618a60c03ad4a3b508333f5
+lib64/libarcsoft_beautyshot_image_algorithm.so:vendor/lib64/libarcsoft_beautyshot_image_algorithm.so|24f34848a2c6e32ac806f6d8d4943b1dac70b046
+lib64/libarcsoft_beautyshot_video_algorithm.so:vendor/lib64/libarcsoft_beautyshot_video_algorithm.so|0c8f4b4bbe4eb62ddb454da643dff21fdc577633
+lib64/libarcsoft_dualcam_refocus.so:vendor/lib64/libarcsoft_dualcam_refocus.so|70c7bebef033b0b1c690750e2decc86e3fc6aa0a
+lib64/libarcsoft_low_light_shot.so:vendor/lib64/libarcsoft_low_light_shot.so|5f64d7cac47772bac5e194fdafa6fa9098d08703
+lib64/libarcsoft_night_shot.so:vendor/lib64/libarcsoft_night_shot.so|fb902fa2b49504220bf4598f2b325b95a7c1a6a2
 lib64/libmpbase.so:vendor/lib64/libmpbase.so
 
 vendor/lib/libdepthmapwrapper.so
@@ -313,7 +313,7 @@ vendor/lib/libchromatix_s5k3p3_isp_video.so
 vendor/lib/libchromatix_s5k3p3_postproc.so
 
 # Camera eeprom
-vendor/lib/libSonyIMX318PdafLibrary.so
+vendor/lib/libSonyIMX318PdafLibrary.so|d378f9b49b649ce4b9360f0b52bee5e82ff8a16f
 vendor/lib/libmmcamera_imx318_eeprom.so
 vendor/lib/libmmcamera_imx362_eeprom.so
 vendor/lib/libmmcamera_s5k3p3_front_eeprom.so

@@ -28,6 +28,9 @@ function blob_fixup() {
         vendor/lib64/com.fingerprints.extension@1.0.so)
             "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
             ;;
+        vendor/lib/libAltek_AF.so | vendor/lib/libHAFIAFalSDE1.so | vendor/lib/libIAFalSDE1.so | vendor/lib/libIQ_Match_Lib.so | vendor/lib/libSonyIMX318PdafLibrary.so | vendor/lib/libalCMotion.so | vendor/lib/libalParseOTP.so | vendor/lib/libalRnB.so | vendor/lib/libalSDE2.so | vendor/lib/libalSDK.so | vendor/lib/libalSPE.so | vendor/lib/libarcsoft_beautyshot.so | vendor/lib/libarcsoft_beautyshot_image_algorithm.so | vendor/lib/libarcsoft_beautyshot_video_algorithm.so | vendor/lib/libarcsoft_dualcam_refocus.so | vendor/lib/libarcsoft_low_light_shot.so | vendor/lib/libarcsoft_night_shot.so | vendor/lib/libarcsoft_picauto.so | vendor/lib64/libalParseOTP.so | vendor/lib64/libalRnB.so | vendor/lib64/libalSDE2.so | vendor/lib64/libalSPE.so | vendor/lib64/libarcsoft_beautyshot.so | vendor/lib64/libarcsoft_beautyshot_image_algorithm.so | vendor/lib64/libarcsoft_beautyshot_video_algorithm.so | vendor/lib64/libarcsoft_dualcam_refocus.so | vendor/lib64/libarcsoft_low_light_shot.so | vendor/lib64/libarcsoft_night_shot.so)
+            "${PATCHELF_0_17_2}" --replace-needed "libstdc++.so" "libstdc++_vendor.so" "${2}"
+            ;;
     esac
 }
 
