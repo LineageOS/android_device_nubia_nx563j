@@ -38,7 +38,6 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
-    libNubiaImageAlgorithm_shim \
     libui_shim.vendor_32
 
 # Consumerir

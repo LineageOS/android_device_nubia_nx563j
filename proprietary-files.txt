@@ -38,7 +38,7 @@ lib/libalSDK.so:vendor/lib/libalSDK.so|e63b5f684f8264d670260151e14cee30552010c7
 lib/libalSPE.so:vendor/lib/libalSPE.so|4904fbddeaacb29e48f87199b06cbec79eba0081
 lib/libmmcamera_nubiacustpro.so:vendor/lib/libmmcamera_nubiacustpro.so
 lib/libnubia_effect.so:vendor/lib/libnubia_effect.so|2fc0e91098c97b57139e8d6c4f5dae136e255043
-lib64/libNubiaImageAlgorithm.so:vendor/lib64/libNubiaImageAlgorithm.so
+lib64/libNubiaImageAlgorithm.so:vendor/lib64/libNubiaImageAlgorithm.so|7d190ee1dbf647bdb3285b946f1055eb5fee5907
 lib64/libalParseOTP.so:vendor/lib64/libalParseOTP.so|11f5df872dcbe9533583e7b8d6aadef825bd1543
 lib64/libalRnB.so:vendor/lib64/libalRnB.so|27f28fb69e4f046d484c63b425d722bbb549e457
 lib64/libalSDE2.so:vendor/lib64/libalSDE2.so|41ece942c2baed0d083f442f7b1bfdea612883ee

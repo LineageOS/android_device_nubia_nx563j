@@ -20,7 +20,6 @@ function blob_fixup() {
             "${PATCHELF}" --remove-needed  "libjnigraphics.so" "${2}"
             "${PATCHELF}" --remove-needed  "libnativehelper.so" "${2}"
             "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
-            "${PATCHELF}" --add-needed "libNubiaImageAlgorithm_shim.so" "${2}"
             ;;
         vendor/lib/libarcsoft_picauto.so)
             "${PATCHELF}" --remove-needed "libandroid.so" "${2}"
