@@ -36,10 +36,6 @@ PRODUCT_COPY_FILES += \
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-# Camera
-PRODUCT_PACKAGES += \
-    libui_shim.vendor_32
-
 # Consumerir
 PRODUCT_PACKAGES += \
     android.hardware.ir-service.example
@@ -51,10 +47,6 @@ PRODUCT_COPY_FILES += \
 # Display configs
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/display/qdcm_calib_data_jdi_r63452_1080p_5p5_mipi_cmd_panel.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_jdi_r63452_1080p_5p5_mipi_cmd_panel.xml
-
-# Fingerprint
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1
 
 # Gatekeeper
 PRODUCT_PACKAGES += \
@@ -109,13 +101,6 @@ PRODUCT_PACKAGES += \
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator-service.nubia
-
-# VNDK
-# Update this list with what each blob is actually for
-# libstdc++: camera.msm8998
-PRODUCT_PACKAGES += \
-    libhidlbase_shim \
-    libstdc++_vendor
 
 # Wifi
 PRODUCT_PACKAGES += \
