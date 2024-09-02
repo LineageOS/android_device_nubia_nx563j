@@ -386,8 +386,8 @@ vendor/lib/libmmcamera_isp_snr47.so
 vendor/lib/libmmcamera_isp_sub_module.so
 
 # Consumerir
-vendor/lib/hw/consumerir.default.so:vendor/lib/hw/consumerir.msm8998.so
-vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.msm8998.so
+vendor/lib/hw/consumerir.default.so:vendor/lib/hw/consumerir.msm8998.so;FIX_SONAME
+vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.msm8998.so;FIX_SONAME
 
 # Fingerprint sensor
 system/lib64/com.fingerprints.extension@1.0.so:vendor/lib64/com.fingerprints.extension@1.0.so|ee86a62bef9cf3d472b22c8c8aee73cadace3818
@@ -411,7 +411,7 @@ vendor/firmware/BCM20797B0_002.001.043.2564.0002_Generic_NCD_Unsigned_configdata
 vendor/firmware/BCM20797B0_002.001.043.2565.0005_Generic_NCD_Unsigned_configdata.ncd
 vendor/firmware/Generic_unsigned_1021_1.ncd
 vendor/firmware/Generic_unsigned_706.ncd
-vendor/lib64/hw/nfc_nci.bcm2079x.default.so:vendor/lib64/hw/nfc_nci.bcm2079x.msm8998.so
+vendor/lib64/hw/nfc_nci.bcm2079x.default.so:vendor/lib64/hw/nfc_nci.bcm2079x.msm8998.so;FIX_SONAME
 
 # Thermal nubia config
 system/etc/.tp/.thermal-mode-00-01.conf:vendor/etc/.tp/.thermal-mode-00-01.conf
