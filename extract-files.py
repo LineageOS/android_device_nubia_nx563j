@@ -22,6 +22,8 @@ from extract_utils.fixups_lib import (
 )
 
 namespace_imports = [
+    'device/nubia/msm8998-common',
+    'hardware/qcom-caf/msm8998',
     'vendor/nubia/msm8998-common',
 ]
 
@@ -85,7 +87,6 @@ module = ExtractUtilsModule(
     'nubia',
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
-    check_elf=False,
     namespace_imports=namespace_imports,
 )
 
