@@ -1,0 +1,34 @@
+//
+// SPDX-FileCopyrightText: 2024 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// Init configuration files
+
+prebuilt_etc {
+    name: "fstab.qcom",
+    src: "vendor/etc/fstab.qcom",
+    vendor: true,
+    required: ["fstab.qcom_ramdisk"],
+}
+
+prebuilt_etc {
+    name: "fstab.qcom_ramdisk",
+    src: "vendor/etc/fstab.qcom",
+    filename_from_src: true,
+    ramdisk: true,
+}
+
+prebuilt_etc {
+    name: "init.nubia.device.rc",
+    src: "vendor/etc/init/hw/init.nubia.device.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
+    name: "init.nubia.touch.lcd.rc",
+    src: "vendor/etc/init/hw/init.nubia.touch.lcd.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
