@@ -11,7 +11,6 @@ vendor/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 etc/firmware/tas2555_uCDSP.bin:vendor/firmware/tas2555_uCDSP.bin
 
 # Alipay
--framework/ifaa_fingerprint.jar
 vendor/lib/libteeclientjni.so
 vendor/lib64/libteeclientjni.so
 
