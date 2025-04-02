@@ -385,6 +385,7 @@ vendor/lib/hw/consumerir.default.so:vendor/lib/hw/consumerir.msm8998.so;FIX_SONA
 vendor/lib64/hw/consumerir.default.so:vendor/lib64/hw/consumerir.msm8998.so;FIX_SONAME
 
 # Fingerprint sensor
+system/lib64/vendor.qti.hardware.fingerprint@1.0:vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 system/lib64/com.fingerprints.extension@1.0.so:vendor/lib64/com.fingerprints.extension@1.0.so|ee86a62bef9cf3d472b22c8c8aee73cadace3818
 vendor/bin/hw/android.hardware.biometrics.fingerprint.fpc@2.1-service
 vendor/bin/qfp-daemon
