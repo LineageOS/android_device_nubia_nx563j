@@ -84,6 +84,8 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('__aeabi_memcpy')
         .clear_symbol_version('__aeabi_memset')
         .clear_symbol_version('__gnu_Unwind_Find_exidx'),
+    'vendor/bin/qfp-daemon': blob_fixup()
+        .replace_needed('libhidltransport.so', 'libhidlbase.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
