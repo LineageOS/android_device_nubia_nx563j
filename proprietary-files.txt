@@ -55,6 +55,7 @@ system/lib/libarcsoft_low_light_shot.so:vendor/lib/libarcsoft_low_light_shot.so|
 system/lib/libarcsoft_night_shot.so:vendor/lib/libarcsoft_night_shot.so|c2852f6cfbfbcb38fef960e312bf83c5280d96be
 system/lib/libarcsoft_picauto.so:vendor/lib/libarcsoft_picauto.so|a624a779bcc3d3cc4422eab1d4da557963a17494
 system/lib/libmpbase.so:vendor/lib/libmpbase.so
+system/lib64/libAltek_Alignment.so:vendor/lib64/libAltek_Alignment.so
 system/lib64/libArcsoftAlgorithm.so:vendor/lib64/libArcsoftAlgorithm.so
 system/lib64/libDualCamera_Calibration.so:vendor/lib64/libDualCamera_Calibration.so
 system/lib64/libarcsoft_beautyshot.so:vendor/lib64/libarcsoft_beautyshot.so|5cfc0fa2354a12409618a60c03ad4a3b508333f5
