@@ -33,6 +33,7 @@ lib_fixups: lib_fixups_user_type = {
 
 blob_fixups: blob_fixups_user_type = {
     'vendor/lib/hw/camera.msm8998.so': blob_fixup()
+        .fix_soname()
         .remove_needed('libgui.so')
         .remove_needed('libandroid.so'),
     (
@@ -40,13 +41,18 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/libnubia_effect.so'
     ): blob_fixup()
         .remove_needed('libgui.so'),
-    'vendor/lib/libNubiaImageAlgorithm.so': blob_fixup()
+    (
+     'vendor/lib/libNubiaImageAlgorithm.so',
+     'vendor/lib64/libNubiaImageAlgorithm.so'
+    ): blob_fixup()
         .remove_needed('libjnigraphics.so')
         .remove_needed('libnativehelper.so')
         .add_needed('libui_shim.so')
         .add_needed('libNubiaImageAlgorithmShim.so'),
     'vendor/lib/libarcsoft_picauto.so': blob_fixup()
         .remove_needed('libandroid.so'),
+    'vendor/lib64/libArcsoftAlgorithm.so': blob_fixup()
+        .remove_needed('libjnigraphics.so'),
     'vendor/lib64/com.fingerprints.extension@1.0.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
     (
@@ -72,6 +78,7 @@ blob_fixups: blob_fixups_user_type = {
      'vendor/lib64/libalRnB.so',
      'vendor/lib64/libalSDE2.so',
      'vendor/lib64/libalSPE.so',
+     'vendor/lib64/libAltek_Alignment.so',
      'vendor/lib64/libarcsoft_beautyshot.so',
      'vendor/lib64/libarcsoft_beautyshot_image_algorithm.so',
      'vendor/lib64/libarcsoft_beautyshot_video_algorithm.so',
@@ -84,6 +91,13 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('__aeabi_memcpy')
         .clear_symbol_version('__aeabi_memset')
         .clear_symbol_version('__gnu_Unwind_Find_exidx'),
+    (
+     'vendor/lib/libmmcamera_pdaf.so',
+     'vendor/lib/libmmcamera_pdafcamif.so',
+    ): blob_fixup()
+        .add_needed('liblog.so'),
+    'vendor/lib/libmmcamera_ppeiscore.so': blob_fixup()
+        .add_needed('libGLESv2_adreno.so'),
     'vendor/bin/qfp-daemon': blob_fixup()
         .replace_needed('libhidltransport.so', 'libhidlbase.so'),
     'vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so': blob_fixup()
