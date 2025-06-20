@@ -26,7 +26,7 @@ namespace touch {
 namespace V1_0 {
 namespace implementation {
 
-constexpr const char kControlPath[] = "/sys/class/input/input4/reversed_keys";
+constexpr const char kControlPath[] = "/sys/class/touch/tpnode/synaptics/reversed_keys";
 
 KeySwapper::KeySwapper() {
     mHasKeySwapper = !access(kControlPath, F_OK);
