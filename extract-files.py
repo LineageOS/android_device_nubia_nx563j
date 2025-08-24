@@ -102,6 +102,8 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libhidltransport.so', 'libhidlbase.so'),
     'vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so': blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
+    'vendor/lib64/hw/nfc_nci.msm8998.so': blob_fixup()
+        .binary_regex_replace(b'nfc_nci.bcm2079x', b'nfc_nci\x00bcm2079x'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
